@@ -1,0 +1,282 @@
+.back{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2em;
+
+  .first-section{
+    background-image: url('../../../../assets/bg/bg-hero.jpg');
+    background-size: cover;
+    background-position: center;
+
+    img{
+      display: none;
+    }
+
+    .content{
+      padding: 3em 1em;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: var(--white);
+
+      h2{
+        font-family: "Josefin Sans", system-ui;
+        text-align: center;
+      }
+
+      p{
+        margin-top: 2em;
+        text-align: justify;
+      }
+    }
+  }
+
+  .second-section{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em 0;
+    gap: 3em;
+    background: rgb(241,241,241);
+    background: linear-gradient(90deg, rgba(241,241,241,1) 0%, rgba(255,255,255,1) 30%, rgba(255,255,255,1) 70%, rgba(241,241,241,1) 100%);
+
+    h2{
+      font-size: 2.6em;
+      color: var(--primary-color);
+    }
+
+    .highlights{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2em;
+
+      .highlight{
+        width: 12em;
+        height: 12em;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: rgb(19,175,197);
+        background: radial-gradient(circle, rgba(19,175,197,1) 20%, rgba(54,156,170,1) 78%);
+        color: var(--white);
+        padding: 0 1em;
+        gap: 1em;
+        animation: grow 1ms ease-in-out;
+        animation-timeline: view();
+        animation-range: cover 0% cover 40%;
+
+        i{
+          font-size: 3.5em;
+        }
+
+        p{
+          font-size: 1.1em;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+}
+
+@media(min-width: 680px){
+
+  .back{
+
+    .first-section{
+
+      .content{
+        padding: 5em 1.5em;
+
+        h2{
+          font-size: 2.3em;
+        }
+
+        p{
+          font-size: 1.6em;
+        }
+      }
+
+    }
+
+    .second-section{
+      padding: 3em 0;
+
+      h2{
+        font-size: 4em;
+      }
+
+      .highlights{
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: wrap;
+
+        h2{
+          font-size: 3.5em;
+        }
+
+        .highlight{
+          width: 16em;
+          height: 16em;
+
+          i{
+            font-size: 5em;
+          }
+
+          p{
+            font-size: 1.6em;
+          }
+        }
+      }
+    }
+
+
+  }
+}
+
+@media(min-width: 1024px){
+
+  .back{
+
+    .first-section{
+      background-image: url('../../../../assets/bg/white-bg-2.jpg');
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 2em;
+      padding: 0 1em;
+
+      img{
+        display: block;
+        width: 40%;
+        cursor: url('../../../../assets/others/sprout-cursor.png'), auto;
+      }
+
+      .content{
+        background-color: transparent;
+        color: var(--primary-text-color);
+      }
+    }
+
+    .second-section{
+      padding: 3em 0 5em 0;
+      gap: 5em;
+
+      .highlights{
+        gap: 4em;
+
+        .highlight{
+
+          &:hover{
+            animation: beat 1s linear infinite;
+
+            i{
+              text-shadow: 0 0 10px white;
+            }
+          }
+
+          p{
+            cursor: context-menu;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media(min-width: 1440px){
+
+  .back{
+
+    .first-section{
+      padding: 3em 1em 6em 1em;
+
+      img{
+        width: 50%;
+      }
+
+      .content{
+
+        h2{
+          font-size: 2.8em;
+        }
+
+        p{
+          font-size: 1.9em;
+        }
+      }
+    }
+
+    .second-section{
+      width: 100%;
+      padding: 4em 0 7em 0;
+
+      h2{
+        font-size: 4em;
+      }
+
+      .highlights{
+        width: 100%;
+        padding: 0 10em;
+        justify-content: space-around;
+      }
+    }
+  }
+}
+
+@media(min-width: 1600px){
+
+  .back{
+
+    .second-section{
+
+      .highlights{
+        padding: 0 5em;
+
+        .highlight{
+          width: 22em;
+          height: 22em;
+
+          i{
+            font-size: 6em;
+          }
+
+          p{
+            font-size: 1.8em;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+@keyframes grow {
+  from{
+    transform: scale(.3);
+  }
+
+  to{
+    transform: scale(1);
+  }
+}
+
+
+@keyframes beat {
+  0%{
+    transform: scale(1);
+  }
+
+  50%{
+    transform: scale(1.2);
+  }
+
+  100%{
+    transform: scale(1);
+  }
+}

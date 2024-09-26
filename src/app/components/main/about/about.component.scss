@@ -1,0 +1,217 @@
+.back{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em;
+  gap: 3em;
+  background-color: var(--gray);
+
+  .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    animation: appear 30ms ease-in-out;
+    animation-timeline: view();
+    animation-range: cover 0% cover 40%;
+
+    h2{
+      font-size: 2em;
+      color: var(--primary-text-color);
+    }
+
+    p{
+      color: var(--secondary-text-color);
+      text-align: justify;
+    }
+  }
+
+  img{
+    height: 16em;
+    box-shadow: .6em .6em 1em rgba(0, 0, 0, 0.3);
+    border-radius: .5em;
+  }
+
+  .services{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 3em;
+    gap: 1.5em;
+    padding-bottom: 1.5em;
+    animation: move 30ms ease-in-out;
+    animation-timeline: view();
+    animation-range: cover 0% cover 15%;
+
+    p{
+      color: var(--primary-text-color);
+    }
+
+    h2{
+      font-size: 2em;
+      color: var(--primary-text-color);
+    }
+
+    .service{
+
+      h3{
+        color: var(--primary-text-color);
+      }
+
+      p{
+        color: var(--secondary-text-color);
+      }
+    }
+
+  }
+}
+
+@media(min-width: 680px){
+
+  .back{
+
+    .container{
+
+      h2{
+        font-size: 2.6em;
+      }
+
+      p{
+        font-size: 1.6em;
+      }
+    }
+
+    img{
+      height: 22em;
+      box-shadow: 1em 1em 2em rgba(0, 0, 0, 0.5);
+      border-radius: .5em;
+    }
+
+    .services{
+      padding: 1em 4em;
+      gap: 3em;
+
+      h2{
+        font-size: 2.6em;
+        align-self: center;
+      }
+
+      p{
+        font-size: 1.6em;
+      }
+
+      .service{
+
+        h3, p{
+          font-size: 1.4em;
+        }
+
+      }
+    }
+  }
+}
+
+@media(min-width: 1024px){
+
+  .back{
+
+    .container{
+      padding: 0 3em;
+      gap: 3em;
+
+      h2{
+        font-size: 3em;
+      }
+
+      p{
+        font-size: 1.9em;
+      }
+    }
+
+    img{
+      height: 30em;
+      box-shadow: 1.6em 1.6em 3.4em rgba(0, 0, 0, 0.5);
+    }
+
+    .services{
+      padding: 1em 6em;
+
+      h2{
+        font-size: 3em;
+      }
+
+      p{
+        font-size: 2em;
+      }
+
+      .service{
+
+        h3{
+          font-size: 2em;
+        }
+
+        p{
+          font-size: 1.8em;
+        }
+      }
+    }
+  }
+}
+
+@media(min-width: 1440px){
+
+  .back{
+
+    .container{
+
+      h2{
+        font-size: 3.5em;
+      }
+
+      p{
+        width: 90%;
+        font-size: 2.1em;
+      }
+    }
+
+  }
+}
+
+@media(min-width: 1600px){
+
+  .back{
+    gap: 5em;
+
+    .container{
+
+      P{
+        width: 80%;
+      }
+    }
+  }
+}
+
+
+@keyframes appear {
+  from{
+    opacity: 0;
+  }
+
+  to{
+    opacity: 1;
+  }
+}
+
+@keyframes move {
+  from{
+    opacity: 0;
+    translate: -100vw 0
+  }
+
+  to{
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+

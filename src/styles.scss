@@ -1,0 +1,22 @@
+:root{
+  --primary-color: #13AFC5;
+  --primary-text-color: #3d3c3c;
+  --secondary-text-color: #585757;
+  --white: #ffffff;
+  --black: #0e0e0e;
+  --gray: #f3f1f1;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: 'Nunito', sans-serif;
+}
+
+
