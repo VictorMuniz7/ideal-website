@@ -152,9 +152,17 @@
 
       .contact{
 
+        h3{
+          font-size: 2em;
+        }
+
         div{
 
           button{
+
+            &:active{
+              opacity: 0;
+            }
 
             &:hover{
               cursor: pointer;
