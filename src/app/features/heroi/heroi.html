@@ -1,0 +1,25 @@
+<section id="inicio" class="heroi" aria-labelledby="heroi-titulo">
+  <div class="container heroi__grade">
+    <div class="heroi__texto">
+      <p class="sobretitulo">{{ heroi.selo }}</p>
+      <h1 id="heroi-titulo">{{ heroi.titulo }}</h1>
+      <p class="heroi__lead">{{ heroi.texto }}</p>
+
+      <div class="heroi__acoes">
+        <a class="botao botao--whats" [href]="whats" target="_blank" rel="noopener">
+          <app-icone nome="whatsapp" />
+          <span>{{ heroi.ctaPrincipal }} <span class="sr-only">pelo WhatsApp (abre em nova aba)</span></span>
+        </a>
+        <a class="botao botao--contorno" href="#coleta">{{ heroi.ctaSecundario }}</a>
+      </div>
+
+      <ul class="heroi__destaques">
+        @for (item of heroi.destaques; track item) {
+          <li><app-icone nome="check" />{{ item }}</li>
+        }
+      </ul>
+    </div>
+
+    <app-perfil-solo class="heroi__figura" [legenda]="heroi.legendaIlustracao" />
+  </div>
+</section>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <!--
+      Sem CSP aqui de propósito: a política é calculada no postbuild
+      (`scripts/aplicar-csp.mjs`), com os hashes dos scripts inline, e inserida
+      só no HTML de produção. O servidor de desenvolvimento roda sem ela.
+    -->
+    <title>Ideal Análises</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f4ee" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="icon" href="favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="manifest" href="manifest.webmanifest" />
+  </head>
+  <body>
+    <app-root></app-root>
+  </body>
+</html>

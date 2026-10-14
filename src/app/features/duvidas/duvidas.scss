@@ -1,0 +1,90 @@
+.duvidas__grade {
+  display: grid;
+  gap: 2rem;
+
+  @media (min-width: 60rem) {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 4rem;
+    align-items: start;
+
+    .secao__cabeca {
+      position: sticky;
+      top: calc(var(--cabecalho-altura) + 2rem);
+      margin-bottom: 0;
+    }
+  }
+}
+
+.duvidas__cta {
+  margin-top: 1.5rem;
+}
+
+.duvidas__lista {
+  border-top: 1px solid var(--linha);
+}
+
+.duvida {
+  border-bottom: 1px solid var(--linha);
+
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 0.25rem;
+    cursor: pointer;
+    list-style: none;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &:hover h3 {
+      color: var(--acao);
+    }
+  }
+
+  h3 {
+    margin: 0;
+    font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+    transition: color 0.18s ease;
+  }
+
+  > p {
+    max-width: 40rem;
+    padding: 0 0.25rem 1.25rem;
+    margin: 0;
+    color: var(--texto-suave);
+  }
+}
+
+// Sinal de + que vira − ao abrir.
+.duvida__sinal {
+  position: relative;
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  border: 1.5px solid var(--linha);
+  border-radius: 999px;
+  background: var(--superficie);
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: 0.75rem;
+    height: 2px;
+    margin: -1px 0 0 -0.375rem;
+    background: var(--tinta);
+    transition: transform 0.2s ease;
+  }
+
+  &::after {
+    transform: rotate(90deg);
+  }
+
+  .duvida[open] &::after {
+    transform: rotate(0deg);
+  }
+}

@@ -1,0 +1,41 @@
+<header class="cabecalho" [class.cabecalho--aberto]="aberto()">
+  <div class="container cabecalho__barra">
+    <a class="cabecalho__marca" href="#inicio">
+      <img
+        src="img/logo-180.webp"
+        srcset="img/logo-180.webp 1x, img/logo-360.webp 2x"
+        width="180"
+        height="48"
+        [alt]="site.empresa.nome + ' — início'"
+      />
+    </a>
+
+    <button
+      #botaoMenu
+      type="button"
+      class="cabecalho__alternar"
+      aria-controls="painel-menu"
+      [attr.aria-expanded]="aberto()"
+      (click)="alternar()"
+    >
+      <app-icone [nome]="aberto() ? 'fechar' : 'menu'" />
+      <span class="sr-only">{{ aberto() ? 'Fechar menu' : 'Abrir menu' }}</span>
+    </button>
+
+    <div id="painel-menu" class="cabecalho__painel" [attr.inert]="movel() && !aberto() ? '' : null">
+      <nav aria-label="Principal">
+        <ul class="cabecalho__links">
+          @for (item of site.navegacao; track item.id) {
+            <li>
+              <a [href]="'#' + item.id" (click)="fechar()">{{ item.rotulo }}</a>
+            </li>
+          }
+        </ul>
+      </nav>
+      <a class="botao botao--whats botao--pequeno" [href]="whats" target="_blank" rel="noopener" (click)="fechar()">
+        <app-icone nome="whatsapp" />
+        <span>WhatsApp <span class="sr-only">(abre em nova aba)</span></span>
+      </a>
+    </div>
+  </div>
+</header>

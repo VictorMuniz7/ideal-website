@@ -1,0 +1,29 @@
+<section id="analises" class="analises secao" aria-labelledby="analises-titulo">
+  <div class="container">
+    <header class="secao__cabeca">
+      <p class="sobretitulo">{{ analises.sobretitulo }}</p>
+      <h2 id="analises-titulo">{{ analises.titulo }}</h2>
+      <p>{{ analises.introducao }}</p>
+    </header>
+
+    <ul class="analises__grade">
+      @for (a of itens; track a.id) {
+        <li class="cartao surgir">
+          <span class="cartao__icone"><app-icone [nome]="a.icone" /></span>
+          <h3>{{ a.titulo }}</h3>
+          <p>{{ a.resumo }}</p>
+          <ul class="cartao__lista">
+            @for (item of a.itens; track item) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+          <a class="cartao__link" [href]="a.whats" target="_blank" rel="noopener">
+            {{ analises.rotuloCta }}
+            <span class="sr-only">de {{ a.titulo }} pelo WhatsApp (abre em nova aba)</span>
+            <app-icone nome="seta" />
+          </a>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

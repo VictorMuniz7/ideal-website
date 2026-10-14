@@ -1,0 +1,25 @@
+<section id="duvidas" class="duvidas secao" aria-labelledby="duvidas-titulo">
+  <div class="container duvidas__grade">
+    <header class="secao__cabeca">
+      <p class="sobretitulo">{{ duvidas.sobretitulo }}</p>
+      <h2 id="duvidas-titulo">{{ duvidas.titulo }}</h2>
+      <p>{{ duvidas.introducao }}</p>
+      <a class="botao botao--whats duvidas__cta" [href]="whats" target="_blank" rel="noopener">
+        <app-icone nome="whatsapp" />
+        <span>{{ duvidas.rotuloCta }} <span class="sr-only">pelo WhatsApp (abre em nova aba)</span></span>
+      </a>
+    </header>
+
+    <div class="duvidas__lista">
+      @for (item of duvidas.itens; track item.pergunta) {
+        <details class="duvida">
+          <summary>
+            <h3>{{ item.pergunta }}</h3>
+            <span class="duvida__sinal" aria-hidden="true"></span>
+          </summary>
+          <p>{{ item.resposta }}</p>
+        </details>
+      }
+    </div>
+  </div>
+</section>

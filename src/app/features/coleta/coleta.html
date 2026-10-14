@@ -1,0 +1,57 @@
+<section id="coleta" class="coleta secao" aria-labelledby="coleta-titulo">
+  <div class="container">
+    <header class="secao__cabeca coleta__cabeca">
+      <p class="sobretitulo">{{ coleta.sobretitulo }}</p>
+      <h2 id="coleta-titulo">{{ coleta.titulo }}</h2>
+      <p>{{ coleta.introducao }}</p>
+    </header>
+
+    <ol class="coleta__passos" role="list">
+      @for (p of passos; track p.numero) {
+        <li class="passo surgir" [class.passo--largo]="!p.ilustracao">
+          <div class="passo__figura">
+            @if (p.ilustracao) {
+              <picture>
+                <source type="image/avif" [attr.srcset]="'img/' + p.ilustracao + '.avif'" />
+                <img
+                  [src]="'img/' + p.ilustracao + '.webp'"
+                  [width]="p.largura"
+                  [height]="p.altura"
+                  [alt]="p.alt"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+            } @else {
+              <app-mapa-glebas [rotulos]="coleta.rotulosGlebas" [descricao]="p.alt" />
+            }
+          </div>
+          <div class="passo__texto">
+            <p class="passo__numero" aria-hidden="true">{{ p.numero }}</p>
+            <h3><span class="sr-only">Passo {{ p.numero }}: </span>{{ p.titulo }}</h3>
+            <p>{{ p.texto }}</p>
+            @if (p.observacao) {
+              <p class="passo__obs">{{ p.observacao }}</p>
+            }
+          </div>
+        </li>
+      }
+
+      <li class="passo passo--apoio surgir">
+        <p class="passo__apoio-titulo">{{ coleta.rotuloDuvida }}</p>
+        <p>{{ coleta.textoDuvida }}</p>
+        <div class="passo__acoes">
+          <a class="botao botao--whats" [href]="whats" target="_blank" rel="noopener">
+            <app-icone nome="whatsapp" />
+            <span>{{ coleta.rotuloCtaDuvida }} <span class="sr-only">pelo WhatsApp (abre em nova aba)</span></span>
+          </a>
+          <a class="botao botao--contorno" [href]="coleta.pdf" download>
+            <app-icone nome="download" />
+            <span>{{ coleta.rotuloPdf }} <span class="sr-only">({{ coleta.pdfTamanho }})</span></span>
+          </a>
+        </div>
+        <p class="passo__tamanho" aria-hidden="true">{{ coleta.pdfTamanho }}</p>
+      </li>
+    </ol>
+  </div>
+</section>

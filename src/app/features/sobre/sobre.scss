@@ -1,0 +1,91 @@
+.sobre {
+  background: var(--superficie);
+  border-block: 1px solid var(--linha);
+}
+
+.sobre__grade {
+  display: grid;
+  gap: clamp(2rem, 1rem + 4vw, 4.5rem);
+  align-items: center;
+
+  @media (min-width: 56rem) {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  }
+}
+
+.sobre__foto {
+  position: relative;
+
+  // Moldura deslocada em turquesa, eco da logo.
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 1rem -0.75rem -0.75rem 1rem;
+    border-radius: calc(var(--raio) + 0.25rem);
+    background: var(--turquesa-claro);
+  }
+
+  img {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1380 / 1363;
+    object-fit: cover;
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+  }
+}
+
+.sobre__texto > p:not(.sobretitulo) {
+  color: var(--texto-suave);
+}
+
+.sobre__info {
+  display: grid;
+  gap: 1rem;
+  margin: 2rem 0 0;
+
+  @media (min-width: 36rem) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.sobre__item {
+  padding: 1.25rem;
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  background: var(--papel);
+
+  dt {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--tinta);
+    font-weight: 700;
+  }
+
+  app-icone {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--acao);
+  }
+
+  dd {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.55;
+  }
+}
+
+// Dia em cima, horário embaixo: o mesmo desenho para todas as linhas, em qualquer largura.
+.sobre__horarios li {
+  display: grid;
+
+  & + li {
+    margin-top: 0.5rem;
+  }
+
+  span:first-child {
+    font-weight: 600;
+  }
+}

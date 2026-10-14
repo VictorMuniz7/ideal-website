@@ -1,0 +1,106 @@
+<section id="contato" class="contato secao" aria-labelledby="contato-titulo">
+  <div class="container">
+    <header class="secao__cabeca">
+      <p class="sobretitulo">{{ textos.sobretitulo }}</p>
+      <h2 id="contato-titulo">{{ textos.titulo }}</h2>
+      <p>{{ textos.introducao }}</p>
+    </header>
+
+    <div class="contato__grade">
+      <div class="contato__canais">
+        <a class="canal canal--whats" [href]="whats" target="_blank" rel="noopener">
+          <span class="canal__icone"><app-icone nome="whatsapp" /></span>
+          <span class="canal__texto">
+            <span class="canal__rotulo">{{ textos.rotuloWhats }}</span>
+            <span class="canal__valor">{{ site.contato.whatsapp.exibicao }}</span>
+          </span>
+          <span class="sr-only">(abre em nova aba)</span>
+        </a>
+        <a class="canal" [href]="site.contato.telefone.link">
+          <span class="canal__icone"><app-icone nome="telefone" /></span>
+          <span class="canal__texto">
+            <span class="canal__rotulo">{{ textos.rotuloTelefone }}</span>
+            <span class="canal__valor">{{ site.contato.telefone.exibicao }}</span>
+          </span>
+        </a>
+        <a class="canal" [href]="'mailto:' + site.contato.email">
+          <span class="canal__icone"><app-icone nome="email" /></span>
+          <span class="canal__texto">
+            <span class="canal__rotulo">{{ textos.rotuloEmail }}</span>
+            <span class="canal__valor">{{ emailUsuario }}<wbr />@{{ emailDominio }}</span>
+          </span>
+        </a>
+        <a class="canal" [href]="site.contato.instagram.url" target="_blank" rel="noopener">
+          <span class="canal__icone"><app-icone nome="instagram" /></span>
+          <span class="canal__texto">
+            <span class="canal__rotulo">{{ textos.rotuloInstagram }}</span>
+            <span class="canal__valor">{{ site.contato.instagram.usuario }}</span>
+          </span>
+          <span class="sr-only">(abre em nova aba)</span>
+        </a>
+
+        <div class="contato__endereco">
+          <p class="contato__endereco-titulo"><app-icone nome="local" />{{ site.sobre.rotuloEndereco }}</p>
+          <address>
+            {{ site.endereco.logradouro }} – {{ site.endereco.bairro }}<br />
+            {{ site.endereco.cidade }}/{{ site.endereco.uf }} · CEP {{ site.endereco.cep }}
+          </address>
+          <p class="contato__endereco-titulo"><app-icone nome="relogio" />{{ site.sobre.rotuloHorario }}</p>
+          <ul class="contato__horarios">
+            @for (h of site.horarios; track h.dias) {
+              <li>
+                <strong>{{ h.dias }}:</strong> {{ h.periodos.join(' e ') }}
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div class="mapa">
+        @if (mapaAtivo()) {
+          <iframe
+            #iframeMapa
+            class="mapa__iframe"
+            [src]="urlMapa"
+            [title]="textos.tituloMapa"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        } @else {
+          <div class="mapa__capa">
+            <svg class="mapa__desenho" viewBox="0 0 400 300" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid slice">
+              <rect width="400" height="300" fill="#e9e3d6" />
+              <g fill="none" stroke="#ffffff" stroke-linecap="round">
+                <path d="M-10 210 C 80 190 150 230 240 200 S 360 160 420 170" stroke-width="16" />
+                <path d="M120 -10 C 130 80 110 160 150 310" stroke-width="12" />
+                <path d="M300 -10 C 280 90 300 180 270 310" stroke-width="9" />
+                <path d="M-10 70 C 90 90 220 50 420 80" stroke-width="7" />
+              </g>
+              <path d="M330 220 C 360 240 380 270 420 280 L420 310 L300 310 Z" fill="#cfe3c2" />
+              <path d="M-10 0 L60 0 C 50 40 20 50 -10 60 Z" fill="#cfe3c2" />
+            </svg>
+            <div class="mapa__conteudo">
+              <span class="mapa__pino"><app-icone nome="local" /></span>
+              <p class="mapa__nome">{{ site.empresa.razaoSocial }}</p>
+              <p class="mapa__end">{{ site.endereco.logradouro }} · {{ site.endereco.cidade }}/{{ site.endereco.uf }}</p>
+              <button type="button" class="botao botao--primario botao--pequeno" (click)="mostrarMapa()">
+                <app-icone nome="mapa" />
+                {{ textos.rotuloMapa }}
+              </button>
+              <p class="mapa__aviso">{{ textos.avisoMapa }}</p>
+            </div>
+          </div>
+        }
+        <div class="mapa__links">
+          <a [href]="site.endereco.mapaLink" target="_blank" rel="noopener">
+            {{ textos.rotuloAbrirMapa }} <span class="sr-only">(abre em nova aba)</span><app-icone nome="externo" />
+          </a>
+          <a [href]="site.endereco.rotaLink" target="_blank" rel="noopener">
+            {{ textos.rotuloRota }} <span class="sr-only">(abre em nova aba)</span><app-icone nome="externo" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

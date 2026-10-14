@@ -1,0 +1,333 @@
+// Estilos globais: tokens, base e peças repetidas entre seções (botões,
+// cabeçalho de seção). O resto fica no SCSS de cada componente.
+
+// ---------------------------------------------------------------------------
+// Tokens
+// ---------------------------------------------------------------------------
+// Contraste (WCAG AA, mínimo 4,5:1) conferido par a par:
+//   --tinta        #0b4f5c sobre --papel #f7f4ee   → 8,4:1
+//   --texto        #1d2a2d sobre --papel           → 13,5:1
+//   --texto-suave  #4a5a5d sobre --papel / papel-2 → 6,6:1 / 6,0:1
+//   --acao         #0a6b7c com texto branco        → 6,2:1 (como texto sobre --papel: 5,6:1)
+//   --whats        #146c3a com texto branco        → 6,5:1
+//   --terra-texto  #7a4a2c sobre --papel           → 6,7:1
+//   --tinta        sobre --turquesa-claro          → 7,7:1
+//   Na faixa de terra (#3d2617): papel 12,9:1 · bege #e9dfd1 10,7:1 · #9fdbe6 9,2:1
+// O turquesa da logo (--turquesa) só aparece em elementos decorativos.
+:root {
+  --papel: #f7f4ee;
+  --papel-2: #efe9de;
+  --superficie: #ffffff;
+  --linha: #ddd4c4;
+
+  --texto: #1d2a2d;
+  --texto-suave: #4a5a5d;
+  --tinta: #0b4f5c;
+  --turquesa: #17a7c2;
+  --turquesa-claro: #d6f0f4;
+
+  --acao: #0a6b7c;
+  --acao-hover: #08586a;
+  --whats: #146c3a;
+  --whats-hover: #0f5a30;
+
+  --terra: #8a5a3b;
+  --terra-texto: #7a4a2c;
+  --terra-media: #6b4329;
+  --terra-escura: #3d2617;
+  --folha: #5c8a3a;
+
+  --fonte-titulo: 'Bricolage Grotesque Variable', 'Segoe UI', system-ui, sans-serif;
+  --fonte-corpo: 'Figtree Variable', 'Segoe UI', system-ui, sans-serif;
+
+  --conteudo: 72rem;
+  --secao-py: clamp(4rem, 3rem + 5vw, 7.5rem);
+  --raio: 1rem;
+  --raio-sm: 0.625rem;
+  --sombra: 0 1px 2px rgb(29 42 45 / 6%), 0 8px 24px -12px rgb(29 42 45 / 18%);
+  --cabecalho-altura: 4.5rem;
+}
+
+// ---------------------------------------------------------------------------
+// Base
+// ---------------------------------------------------------------------------
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--cabecalho-altura) + 1rem);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--papel);
+  color: var(--texto);
+  font-family: var(--fonte-corpo);
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg,
+picture,
+iframe {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--fonte-titulo);
+  color: var(--tinta);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.375rem, 1.6rem + 3.6vw, 4.5rem);
+  font-weight: 750;
+}
+
+h2 {
+  font-size: clamp(1.875rem, 1.4rem + 2.2vw, 3rem);
+  font-weight: 700;
+}
+
+h3 {
+  font-size: clamp(1.1875rem, 1.1rem + 0.4vw, 1.375rem);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0 0 1em;
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--acao);
+  text-underline-offset: 0.18em;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--acao);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--turquesa-claro);
+  color: var(--tinta);
+}
+
+// ---------------------------------------------------------------------------
+// Utilitários
+// ---------------------------------------------------------------------------
+.container {
+  width: min(100% - 2rem, var(--conteudo));
+  margin-inline: auto;
+
+  @media (min-width: 48rem) {
+    width: min(100% - 3rem, var(--conteudo));
+  }
+}
+
+.secao {
+  padding-block: var(--secao-py);
+}
+
+.secao__cabeca {
+  max-width: 42rem;
+  margin-bottom: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+
+  p:not(.sobretitulo) {
+    color: var(--texto-suave);
+    font-size: 1.0625em;
+    margin: 0;
+  }
+}
+
+.sobretitulo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.875rem;
+  color: var(--terra-texto);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  &::before {
+    content: '';
+    width: 1.5rem;
+    height: 2px;
+    background: currentColor;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.pular-para-conteudo {
+  position: fixed;
+  z-index: 100;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 999px;
+  background: var(--tinta);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform 0.2s ease;
+
+  &:focus-visible {
+    transform: none;
+    outline-color: var(--turquesa);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Botões
+// ---------------------------------------------------------------------------
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0.75rem 1.375rem;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease;
+
+  .icone {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: none;
+  }
+}
+
+.botao--whats {
+  background: var(--whats);
+  color: #fff;
+
+  &:hover {
+    background: var(--whats-hover);
+  }
+}
+
+.botao--primario {
+  background: var(--acao);
+  color: #fff;
+
+  &:hover {
+    background: var(--acao-hover);
+  }
+}
+
+.botao--contorno {
+  border-color: var(--tinta);
+  color: var(--tinta);
+  background: transparent;
+
+  &:hover {
+    background: var(--tinta);
+    color: #fff;
+  }
+}
+
+.botao--pequeno {
+  min-height: 2.75rem;
+  padding: 0.5rem 1.125rem;
+  font-size: 0.9375rem;
+}
+
+// ---------------------------------------------------------------------------
+// Entrada suave dos blocos — só onde o navegador anima pela rolagem, sem JS.
+// Sem suporte (ou com movimento reduzido), o conteúdo aparece direto.
+// ---------------------------------------------------------------------------
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .surgir {
+      animation: surgir linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+
+    @keyframes surgir {
+      from {
+        opacity: 0;
+        transform: translateY(1.5rem);
+      }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

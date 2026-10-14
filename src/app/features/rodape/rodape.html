@@ -1,0 +1,35 @@
+<footer class="rodape">
+  <div class="container rodape__grade">
+    <div class="rodape__marca">
+      <img src="img/logo-180.webp" srcset="img/logo-180.webp 1x, img/logo-360.webp 2x" width="180" height="48" alt="" loading="lazy" />
+      <p>{{ site.empresa.razaoSocial }}</p>
+      @if (site.rodape.cnpj) {
+        <p>CNPJ {{ site.rodape.cnpj }}</p>
+      }
+    </div>
+
+    <nav class="rodape__nav" aria-label="Rodapé">
+      <ul>
+        @for (item of site.navegacao; track item.id) {
+          <li><a [href]="'#' + item.id">{{ item.rotulo }}</a></li>
+        }
+        <li><a [href]="site.coleta.pdf" download>{{ site.coleta.rotuloPdf }}</a></li>
+      </ul>
+    </nav>
+
+    <div class="rodape__contato">
+      <address>
+        {{ site.endereco.logradouro }} – {{ site.endereco.bairro }}<br />
+        {{ site.endereco.cidade }}/{{ site.endereco.uf }} · CEP {{ site.endereco.cep }}
+      </address>
+      <p>
+        <a [href]="site.contato.telefone.link">{{ site.contato.telefone.exibicao }}</a> ·
+        <a [href]="'mailto:' + site.contato.email">{{ site.contato.email }}</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="container rodape__base">
+    <p>© {{ ano }} {{ site.empresa.razaoSocial }}. {{ site.rodape.direitos }}</p>
+  </div>
+</footer>
